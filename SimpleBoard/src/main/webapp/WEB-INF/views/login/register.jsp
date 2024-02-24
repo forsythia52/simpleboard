@@ -13,6 +13,8 @@
 	비밀번호 : <input type="password" name="pw"><br>
 	비밀번호 확인 : <input type="password"><br>
 	이름 : <input name="name"><br>
+	닉네임 <input name="nickname"><br>
+	생년월일 : <input type="date" name="birthday"><br>
 	주소 : <input type="text" id="sample4_postcode" placeholder="우편번호">
 <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
 <input type="text" id="sample4_roadAddress" name="userAddr1" placeholder="도로명주소">

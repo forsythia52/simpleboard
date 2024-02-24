@@ -12,9 +12,9 @@ import com.board.dto.LoginDto;
 public interface LoginDao {
 	@Select("select * from users where userid = #{id}")
 	LoginDto findById(String userId);
-	
-	@Insert("insert into users(usernumber, userid, userpassword, userregisterdate, userrole, username, useraddr1, useraddr2, useremail, userphone, userphoto)"
-			+ "values(#{usernumber}, #{userid}, #{userpassword}, #{userregisterdate}, #{userrole}, #{username}, #{useraddr1}, #{useraddr2}, #{useremail}, #{userphone}, #{userphoto})")
+
+	@Insert("insert into users(usernumber, usernickname, userid, userpassword, userregisterdate, userrole, username, useraddr1, useraddr2, useremail, userphone, userbirthday, userphoto)"
+			+ "values(#{usernumber}, #{usernickname}, #{userid}, #{userpassword}, #{userregisterdate}, #{userrole}, #{username}, #{useraddr1}, #{useraddr2}, #{useremail}, #{userphone}, #{userbirthday}, #{userphoto})")
 	int userRegister(Map<String, Object> user);
-	
+
 }

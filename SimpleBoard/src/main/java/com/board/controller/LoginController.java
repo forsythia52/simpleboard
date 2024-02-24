@@ -1,11 +1,14 @@
 package com.board.controller;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,12 +22,12 @@ public class LoginController {
 
 	@Autowired
 	LoginService service;
-	
+
 	@GetMapping("/login")
 	public String Login() {
 		return "login/login";
 	}
-		
+
 	@GetMapping("/register")
 	public String Regisetr() {
 		return "login/register";
@@ -34,7 +37,8 @@ public class LoginController {
 	public String userRegister(@RequestParam(value = "id") String id, @RequestParam(value = "pw") String pw,
 			@RequestParam(value = "name") String name, @RequestParam(value = "userAddr1") String addr1,
 			@RequestParam(value = "userAddr2") String addr2, @RequestParam(value = "email") String email,
-			@RequestParam(value = "phone") String phone) {
+			@RequestParam(value = "phone") String phone, @RequestParam(value = "nickname") String nickname,
+			@RequestParam(value = "birthday") @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthday) {
 		Map<String, Object> user = new HashMap<>();
 		LocalDate now = LocalDate.now();
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -42,12 +46,14 @@ public class LoginController {
 		user.put("userid", id);
 		user.put("userpassword", encoder.encode(pw));
 		user.put("username", name);
+		user.put("usernickname", nickname);
 		user.put("userregisterdate", now.format(format));
 		user.put("userrole", "ROLE_MEMBER");
 		user.put("useraddr1", addr1);
 		user.put("useraddr2", addr2);
 		user.put("useremail", email);
 		user.put("userphone", phone);
+		user.put("userbirthday", birthday);
 		service.userRegister(user);
 		System.out.println("회원가입 완료");
 		return "login/registercomplete";
