@@ -1,6 +1,5 @@
 package com.board.controller;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -14,17 +13,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.board.service.LoginService;
 
 @Controller
+@SessionAttributes("user")
 public class LoginController {
 
 	@Autowired
 	LoginService service;
-
+	
 	@GetMapping("/login")
 	public String Login() {
+		return "login/login";
+	}
+	
+	@GetMapping("/")
+	public String Login2() {
 		return "login/login";
 	}
 

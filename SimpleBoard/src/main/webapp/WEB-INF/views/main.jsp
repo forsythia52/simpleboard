@@ -7,5 +7,7 @@
 </head>
 <body>
 <h3>메인화면</h3>
+환영합니다 ${nickname}님!
+<a href="/freeboard">자유 게시판</a>
 </body>
 </html>
