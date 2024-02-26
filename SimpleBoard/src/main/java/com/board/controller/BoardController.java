@@ -13,6 +13,7 @@ import com.board.config.SecurityUser;
 import com.board.dto.BoardDto;
 import com.board.dto.LoginDto;
 import com.board.service.BoardService;
+import com.board.service.CommentService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -21,7 +22,10 @@ public class BoardController {
 
 	@Autowired
 	BoardService service;
-
+	
+	@Autowired
+	CommentService commentService;
+	
 	@GetMapping("/freeboard")
 	public String freeBoard(Model m) {
 		m.addAttribute("board", service.boardList());
@@ -42,6 +46,7 @@ public class BoardController {
 		String boardnumber = request.getParameter("number");
 		System.out.println(boardnumber);
 		m.addAttribute("board", service.boardView(boardnumber));
+		m.addAttribute("comment",commentService.commentList(boardnumber));
 		return "board/freeboardview";
 	}
 

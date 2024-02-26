@@ -13,7 +13,7 @@ public interface BoardDao {
 
 	@Select("select * from board")
 	List<BoardDto> boardList();
-
+	
 	@Select("select * from board where boardnumber = #{boardnumber}")
 	BoardDto boardView(String boardnumber);
 

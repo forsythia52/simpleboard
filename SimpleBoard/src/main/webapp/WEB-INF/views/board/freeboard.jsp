@@ -37,5 +37,6 @@ th, td {
 	</c:forEach>
 </table>
 <p><a href="/boardwrite">글 작성</a></p>
+<p><a href="/logout">로그아웃</a></p>
 </body>
 </html>
