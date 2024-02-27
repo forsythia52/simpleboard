@@ -25,6 +25,7 @@ th, td {
 	<td>번호</td>
 	<td>작성자</td>
 	<td>제목</td>
+	<td>작성시간</td>
 	<td>조회수</td>
 	</tr>
 	<c:forEach var="dto" items="${board}">
@@ -32,6 +33,7 @@ th, td {
 	<td>${dto.boardnumber}</td>
 	<td>${dto.userid}</td>
 	<td><a href="view?number=${dto.boardnumber}">${dto.boardtitle}</a></td>
+	<td>${dto.boardwritedate}</td>
 	<td>${dto.boardviews}</td>
 	</tr>
 	</c:forEach>

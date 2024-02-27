@@ -1,8 +1,5 @@
 package com.board.controller;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +25,16 @@ public class CommentController {
 
 	@PostMapping("/comment/write")
 	public String commentWrite(CommentDto dto, @AuthenticationPrincipal SecurityUser user,
+			@RequestParam(value = "commentcontent") String commentcontent,
 			@RequestParam(value = "boardnumber") String boardNumber) {
 		LoginDto userInfo = user.getUsers();
 		String userId = userInfo.getUserId();
-//		System.out.println(boardNumber);
+		Date now = new Date();
+		dto.setBoardnumber(boardNumber);
 		dto.setCommentuserid(userId);
+		dto.setCommentdate(now);
+		dto.setCommentcontent(commentcontent);
+		service.commentWrite(dto);
 		System.out.println("채팅" + dto);
 		return "redirect:/freeboard";
 	}

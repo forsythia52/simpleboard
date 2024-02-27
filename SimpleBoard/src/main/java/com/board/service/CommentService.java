@@ -1,7 +1,6 @@
 package com.board.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +22,7 @@ public class CommentService {
 		return dao.commentList(boardnumber);
 	}
 
-	public int commentWrite(Map<String, Object> comment) {
-		return dao.commentWrite(comment);
+	public int commentWrite(CommentDto dto) {
+		return dao.commentWrite(dto);
 	}
 }

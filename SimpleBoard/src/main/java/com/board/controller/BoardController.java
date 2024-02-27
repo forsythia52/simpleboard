@@ -1,13 +1,16 @@
 package com.board.controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.board.config.SecurityUser;
 import com.board.dto.BoardDto;
@@ -22,10 +25,10 @@ public class BoardController {
 
 	@Autowired
 	BoardService service;
-	
+
 	@Autowired
 	CommentService commentService;
-	
+
 	@GetMapping("/freeboard")
 	public String freeBoard(Model m) {
 		m.addAttribute("board", service.boardList());
@@ -41,19 +44,24 @@ public class BoardController {
 		return "board/boardwrite";
 	}
 
+	@PostMapping("/write")
+	public String write(@RequestParam(value = "userid") String userId, BoardDto dto, Model m) {
+		LocalDateTime now = LocalDateTime.now();
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		dto.setUserid(userId);
+		dto.setBoardviews(0);
+		dto.setBoardwritedate(format.format(now));
+		service.writeBoard(dto);
+		return "redirect:freeboard";
+	}
+
 	@GetMapping("/view")
 	public String view(HttpServletRequest request, Model m) {
 		String boardnumber = request.getParameter("number");
 		System.out.println(boardnumber);
 		m.addAttribute("board", service.boardView(boardnumber));
-		m.addAttribute("comment",commentService.commentList(boardnumber));
+		m.addAttribute("comment", commentService.commentList(boardnumber));
 		return "board/freeboardview";
-	}
-
-	@PostMapping("/write")
-	public String write(@ModelAttribute BoardDto dto, Model m) {
-		service.writeBoard(dto);
-		return "redirect:freeboard";
 	}
 
 	@DeleteMapping("/delete")

@@ -17,7 +17,7 @@ public interface BoardDao {
 	@Select("select * from board where boardnumber = #{boardnumber}")
 	BoardDto boardView(String boardnumber);
 
-	@Insert("insert into board (boardtitle, boardviews, boardwritedate, boarddtail) "
-			+ "values (#{boardtitle}, #{boardviews}, #{boardwritedate}, #{boarddtail})")
+	@Insert("insert into board (boardtitle, boardviews, boardwritedate, boarddtail, userid) "
+			+ "values (#{boardtitle}, #{boardviews}, #{boardwritedate}, #{boarddtail}, #{userid})")
 	int writeBoard(BoardDto boarddto);
 }

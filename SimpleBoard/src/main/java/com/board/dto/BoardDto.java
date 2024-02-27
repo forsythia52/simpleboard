@@ -1,7 +1,5 @@
 package com.board.dto;
 
-import java.util.Date;
-
 import lombok.Data;
 
 @Data
@@ -10,7 +8,7 @@ public class BoardDto {
 	private String boardnumber;
 	private String userid;
 	private String boardtitle;
-	private String boardviews;
-	private Date boardwritedate;
+	private int boardviews;
+	private String boardwritedate;
 	private String boarddtail;
 }

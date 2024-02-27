@@ -18,7 +18,7 @@ table {
 	<table>
 			<tr>
 				<td>작성자</td>
-				<td><input name="usernid" size="100" value="${id}" readonly></td>
+				<td>${id}</td>
 			</tr>
 			<tr>
 				<td>제목</td>
