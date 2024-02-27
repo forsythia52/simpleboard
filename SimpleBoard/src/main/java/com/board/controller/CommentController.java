@@ -35,28 +35,7 @@ public class CommentController {
 		dto.setCommentdate(now);
 		dto.setCommentcontent(commentcontent);
 		service.commentWrite(dto);
-		System.out.println("채팅" + dto);
 		return "redirect:/freeboard";
 	}
-
-//	@PostMapping("/comment/write")
-//	public String commentWrite(@RequestParam(value = "commentcontent") String commentContent,
-//			@AuthenticationPrincipal SecurityUser user) {
-//		String boardNumber = service.boardNumber();
-//		System.out.println(boardNumber);
-//		Map<String, Object> comment = new HashMap<>();
-//		LocalDateTime now = LocalDateTime.now();
-//		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-//		System.out.println(now.format(format));
-//		LoginDto dto = user.getUsers();
-//		String userId = dto.getUserId();
-//		comment.put("boardnumber", 6);
-//		comment.put("commentcontent", commentContent);
-//		comment.put("commentuserid", userId);
-//		comment.put("commentdate", now);
-//		service.commentWrite(comment);
-//		System.out.println(comment);
-//		return "redirect:/freeboard";
-//	}
-
+	
 }

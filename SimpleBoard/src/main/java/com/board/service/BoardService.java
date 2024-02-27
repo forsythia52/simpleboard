@@ -1,6 +1,7 @@
 package com.board.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,11 +19,19 @@ public class BoardService {
 		return dao.boardList();
 	}
 	
+	public BoardDto boardView(String boardnumber) {
+		return dao.boardView(boardnumber);
+	}
+	
 	public int writeBoard(BoardDto boarddto) {
 		return dao.writeBoard(boarddto);
 	}
 	
-	public BoardDto boardView(String boardnumber) {
-		return dao.boardView(boardnumber);
+	public int updateBoard(Map<String, Object> boardUpdate) {
+		return dao.updateBoard(boardUpdate);
+	}
+	
+	public int deleteBoard(String boardumber) {
+		return dao.deleteBoard(boardumber);
 	}
 }

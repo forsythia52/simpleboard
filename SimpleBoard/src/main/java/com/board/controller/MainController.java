@@ -15,7 +15,6 @@ public class MainController {
 	public String main(@AuthenticationPrincipal SecurityUser user, Model m) {
 		LoginDto userinfo = user.getUsers();
 		String nickname = userinfo.getUsernickname();
-		System.out.println("main " + nickname);
 		m.addAttribute("nickname", nickname);
 		return "main";
 	}

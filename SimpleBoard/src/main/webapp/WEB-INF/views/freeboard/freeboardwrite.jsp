@@ -14,11 +14,11 @@ table {
 <body>
 	<br>
 	<p>
-	<form action="write" method="post">
+	<form action="freeboardwrite" method="post">
 	<table>
 			<tr>
 				<td>작성자</td>
-				<td>${id}</td>
+				<td><input name="userid" size="100" value="${id}" readonly></td>
 			</tr>
 			<tr>
 				<td>제목</td>

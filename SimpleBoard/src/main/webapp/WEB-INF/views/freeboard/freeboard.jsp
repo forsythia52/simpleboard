@@ -32,7 +32,7 @@ th, td {
 	<tr>
 	<td>${dto.boardnumber}</td>
 	<td>${dto.userid}</td>
-	<td><a href="view?number=${dto.boardnumber}">${dto.boardtitle}</a></td>
+	<td><a href="freeboardview?number=${dto.boardnumber}">${dto.boardtitle}</a></td>
 	<td>${dto.boardwritedate}</td>
 	<td>${dto.boardviews}</td>
 	</tr>

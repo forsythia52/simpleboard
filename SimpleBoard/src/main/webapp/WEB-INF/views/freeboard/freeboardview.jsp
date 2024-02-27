@@ -17,7 +17,17 @@
 	<hr>
 	<br>
 	<p>
-		<a href="freeboard">목록보기</a>
+	<div><form action="freeboardupdate" method="get">
+		<input type="submit" value="수정"> <input type="hidden"
+			name="boardnumber" id="freeboardupdateboardnumber">
+	</form>
+	<form action="freeboarddelete" method="post">
+		<input type="submit" value="삭제"> <input type="hidden"
+			name="boardnumber" id="freeboarddeleteboardnumber">
+	</form>
+	</div>
+	
+	<a href="freeboard">목록보기</a>
 	<hr>
 	댓글 목록
 	<br>
@@ -30,11 +40,11 @@
 		<br>
 	</c:forEach>
 	<hr>
-	<form action="/comment/write" method="post" onclick="">
+	<form action="/comment/write" method="post">
 		댓글 :
 		<textarea rows="10" cols="20" name="commentcontent"></textarea>
-		<input type="submit" value="작성">
-		<input type="hidden" name="boardnumber" id="boardnumber">
+		<input type="submit" value="작성"> <input type="hidden"
+			name="boardnumber" id="commemtboardnumber">
 	</form>
 	<hr>
 	<script>
@@ -42,8 +52,14 @@
 
 		const number = urlParams.get('number');
 		
-		document.getElementById("boardnumber").value = number;
-
+		// 게시글 수정
+		document.getElementById("freeboardupdateboardnumber").value = number;
+		
+		// 게시글 삭제
+		document.getElementById("freeboarddeleteboardnumber").value = number;
+		
+		// 댓글 작성
+		document.getElementById("commemtboardnumber").value = number;
 	</script>
 </body>
 </html>
