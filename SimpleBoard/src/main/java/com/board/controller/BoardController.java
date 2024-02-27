@@ -63,6 +63,7 @@ public class BoardController {
 	public String view(HttpServletRequest request, Model m) {
 		String boardnumber = request.getParameter("number");
 		m.addAttribute("board", service.boardView(boardnumber));
+		// 댓글 불러오기
 		m.addAttribute("comment", commentService.commentList(boardnumber));
 		return "freeboard/freeboardview";
 	}

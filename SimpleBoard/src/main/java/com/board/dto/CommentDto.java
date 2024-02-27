@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 public class CommentDto {
 	
+	private String commentnumber;
 	private String boardnumber;
 	private String commentuserid;
 	private String commentcontent;

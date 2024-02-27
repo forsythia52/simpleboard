@@ -36,7 +36,13 @@
 			<td>${dto.commentuserid}</td>
 			<td>${dto.commentcontent}</td>
 			<td>${dto.commentdate}</td>
+			<td>${dto.commentnumber}</td>
 		</tr>
+		<form action="/comment/delete" method="post">
+			<input type="hidden" name="commentuserid" value="${dto.commentuserid}">
+			<input type="hidden" name="commentnumber" value="${dto.commentnumber}">
+			<input type="submit" value="삭제">
+		</form>
 		<br>
 	</c:forEach>
 	<hr>
@@ -46,10 +52,11 @@
 		<input type="submit" value="작성"> <input type="hidden"
 			name="boardnumber" id="commemtboardnumber">
 	</form>
+
 	<hr>
 	<script>
+		// 게시판 번호 가져오기
 		const urlParams = new URL(location.href).searchParams;
-
 		const number = urlParams.get('number');
 		
 		// 게시글 수정

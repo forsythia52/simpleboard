@@ -23,6 +23,7 @@ public class CommentController {
 	@Autowired
 	BoardService boardService;
 
+	// 댓글 작성
 	@PostMapping("/comment/write")
 	public String commentWrite(CommentDto dto, @AuthenticationPrincipal SecurityUser user,
 			@RequestParam(value = "commentcontent") String commentcontent,
@@ -37,5 +38,15 @@ public class CommentController {
 		service.commentWrite(dto);
 		return "redirect:/freeboard";
 	}
-	
+
+	// 댓글 수정
+
+	// 댓글 삭제
+	@PostMapping("/comment/delete")
+	public String commentDelete(@RequestParam(value = "commentuserid") String userId,
+			@RequestParam(value = "commentnumber") String number) {
+		service.commentDelete(number, userId);
+		return "redirect:/freeboard";
+	}
+
 }
