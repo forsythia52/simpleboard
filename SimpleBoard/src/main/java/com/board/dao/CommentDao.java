@@ -14,12 +14,15 @@ import com.board.dto.CommentDto;
 public interface CommentDao {
 
 	@Select("select * from comment where boardnumber = #{boardnumber}")
-	List<CommentDto> commentList(String boardnumber);
+	List<CommentDto> commentList(String boardNumber);
 
+	@Select("select boardnumber from board")
+	List<Integer> boardNumber();
+	
 	@Insert("insert into comment(boardnumber, commentuserid, commentcontent, commentdate)"
 			+ "values (#{boardnumber}, #{commentuserid}, #{commentcontent}, #{commentdate})")
 	int commentWrite(CommentDto dto);
-
+	
 	@Delete("delete from comment where commentnumber = #{commentnumber} and commentuserid = #{commentuserid}")
 	int commentDelete(@Param("commentnumber") String number, @Param("commentuserid") String userId);
 

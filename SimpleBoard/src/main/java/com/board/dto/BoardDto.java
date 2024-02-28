@@ -11,4 +11,5 @@ public class BoardDto {
 	private int boardviews;
 	private String boardwritedate;
 	private String boarddtail;
+	private int commentcount;
 }

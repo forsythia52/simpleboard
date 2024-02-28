@@ -21,11 +21,15 @@ public class CommentService {
 	public List<CommentDto> commentList(String boardnumber) {
 		return dao.commentList(boardnumber);
 	}
-
+	
+	public List<Integer> boardNumber() {
+		return dao.boardNumber();
+	}
+	
 	public int commentWrite(CommentDto dto) {
 		return dao.commentWrite(dto);
 	}
-
+	
 	public int commentDelete(String number, String userId) {
 		return dao.commentDelete(number, userId);
 	}

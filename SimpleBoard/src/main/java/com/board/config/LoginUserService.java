@@ -17,7 +17,6 @@ public class LoginUserService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-		System.out.println("아이디: " + userId);
 		LoginDto user = Dao.findById(userId);
 		
 		if (user == null) {

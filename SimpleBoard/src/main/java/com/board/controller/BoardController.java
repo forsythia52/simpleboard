@@ -32,7 +32,9 @@ public class BoardController {
 
 	// 자유 게시판 페이지
 	@GetMapping("/freeboard")
-	public String freeBoard(Model m) {
+	public String freeBoard(@AuthenticationPrincipal SecurityUser user, Model m) {
+		LoginDto userInfo = user.getUsers();
+		m.addAttribute("userInfo", userInfo);
 		m.addAttribute("board", service.boardList());
 		return "freeboard/freeboard";
 	}
@@ -65,6 +67,8 @@ public class BoardController {
 		m.addAttribute("board", service.boardView(boardnumber));
 		// 댓글 불러오기
 		m.addAttribute("comment", commentService.commentList(boardnumber));
+		// 게시글 조회수 +1
+		service.boardCountUp(boardnumber);
 		return "freeboard/freeboardview";
 	}
 
@@ -72,7 +76,6 @@ public class BoardController {
 	@GetMapping("freeboardupdate")
 	public String freeboardUpdateView(HttpServletRequest request, Model m) {
 		String boardnumber = request.getParameter("boardnumber");
-		System.out.println(boardnumber);
 		m.addAttribute("board", service.boardView(boardnumber));
 		return "freeboard/freeboardupdate";
 	}

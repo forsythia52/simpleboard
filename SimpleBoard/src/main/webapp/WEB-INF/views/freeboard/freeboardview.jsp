@@ -31,6 +31,7 @@
 	<hr>
 	댓글 목록
 	<br>
+	<!-- 댓글 목록 -->
 	<c:forEach var="dto" items="${comment}">
 		<tr>
 			<td>${dto.commentuserid}</td>
@@ -38,14 +39,17 @@
 			<td>${dto.commentdate}</td>
 			<td>${dto.commentnumber}</td>
 		</tr>
+		<!-- 댓글 삭제 -->
 		<form action="/comment/delete" method="post">
 			<input type="hidden" name="commentuserid" value="${dto.commentuserid}">
 			<input type="hidden" name="commentnumber" value="${dto.commentnumber}">
+			<input type="hidden" name="boardnumber" value="${dto.boardnumber}">
 			<input type="submit" value="삭제">
 		</form>
 		<br>
 	</c:forEach>
 	<hr>
+	<!-- 댓글 작성 -->
 	<form action="/comment/write" method="post">
 		댓글 :
 		<textarea rows="10" cols="20" name="commentcontent"></textarea>

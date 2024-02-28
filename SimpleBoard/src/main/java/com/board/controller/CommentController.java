@@ -36,6 +36,7 @@ public class CommentController {
 		dto.setCommentdate(now);
 		dto.setCommentcontent(commentcontent);
 		service.commentWrite(dto);
+		boardService.commentCount(boardNumber);
 		return "redirect:/freeboard";
 	}
 
@@ -44,8 +45,10 @@ public class CommentController {
 	// 댓글 삭제
 	@PostMapping("/comment/delete")
 	public String commentDelete(@RequestParam(value = "commentuserid") String userId,
-			@RequestParam(value = "commentnumber") String number) {
+			@RequestParam(value = "commentnumber") String number,
+			@RequestParam(value = "boardnumber") String boardNumber) {
 		service.commentDelete(number, userId);
+		boardService.commentCount(boardNumber);
 		return "redirect:/freeboard";
 	}
 

@@ -14,7 +14,6 @@ public class SecurityUser extends User {
 
 		super(users.getUserId(), users.getUserPassword(),
 				AuthorityUtils.createAuthorityList(users.getUserrole().toString()));
-		System.out.println("사용자 정보: " + users);
 		this.users = users;
 	}
 

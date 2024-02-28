@@ -18,19 +18,27 @@ public class BoardService {
 	public List<BoardDto> boardList() {
 		return dao.boardList();
 	}
-	
+
 	public BoardDto boardView(String boardnumber) {
 		return dao.boardView(boardnumber);
 	}
-	
+
 	public int writeBoard(BoardDto boarddto) {
 		return dao.writeBoard(boarddto);
 	}
-	
+
 	public int updateBoard(Map<String, Object> boardUpdate) {
 		return dao.updateBoard(boardUpdate);
 	}
+
+	public int boardCountUp(String boardNumber) {
+		return dao.boardCountUp(boardNumber);
+	}
 	
+	public int commentCount(String boardNumber) {
+		return dao.commentCount(boardNumber);
+	}
+
 	public int deleteBoard(String boardumber) {
 		return dao.deleteBoard(boardumber);
 	}
