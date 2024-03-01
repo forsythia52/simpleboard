@@ -3,6 +3,7 @@ package com.board.controller;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,10 +33,37 @@ public class BoardController {
 
 	// 자유 게시판 페이지
 	@GetMapping("/freeboard")
-	public String freeBoard(@AuthenticationPrincipal SecurityUser user, Model m) {
+	public String freeBoard(@AuthenticationPrincipal SecurityUser user, Model m,
+			@RequestParam(name = "page", defaultValue = "1") int page) {
 		LoginDto userInfo = user.getUsers();
 		m.addAttribute("userInfo", userInfo);
-		m.addAttribute("board", service.boardList());
+		m.addAttribute("board", service.selectList(page));
+
+		// 페이징
+		int count = service.boardCount();
+		if (count > 0) {
+
+			int perPage = 10; // 한 페이지에 보일 글의 갯수
+			int startRow = (page - 1) * perPage;
+
+			List<BoardDto> boardList = service.selectList(startRow);
+			m.addAttribute("start", startRow + 1);
+			m.addAttribute("bList", boardList);
+
+			int pageNum = 5;
+			int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0); // 전체 페이지 수
+
+			int begin = (page - 1) / pageNum * pageNum + 1;
+			int end = begin + pageNum - 1;
+			if (end > totalPages) {
+				end = totalPages;
+			}
+			m.addAttribute("begin", begin);
+			m.addAttribute("end", end);
+			m.addAttribute("pageNum", pageNum);
+			m.addAttribute("totalPages", totalPages);
+		}
+		m.addAttribute("count", count);
 		return "freeboard/freeboard";
 	}
 

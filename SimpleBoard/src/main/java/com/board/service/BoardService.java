@@ -1,5 +1,6 @@
 package com.board.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,8 +24,20 @@ public class BoardService {
 		return dao.boardView(boardnumber);
 	}
 
-	public int writeBoard(BoardDto boarddto) {
-		return dao.writeBoard(boarddto);
+	public int boardCount() {
+		return dao.boardCount();
+	}
+
+	// 페이징
+	public List<BoardDto> selectList(int start) {
+		Map<String, Object> m = new HashMap<>();
+		m.put("start", start);
+		m.put("count", 10);
+		return dao.selectList(m);
+	}
+
+	public int writeBoard(BoardDto boardDto) {
+		return dao.writeBoard(boardDto);
 	}
 
 	public int updateBoard(Map<String, Object> boardUpdate) {
@@ -34,12 +47,12 @@ public class BoardService {
 	public int boardCountUp(String boardNumber) {
 		return dao.boardCountUp(boardNumber);
 	}
-	
+
 	public int commentCount(String boardNumber) {
 		return dao.commentCount(boardNumber);
 	}
 
-	public int deleteBoard(String boardumber) {
-		return dao.deleteBoard(boardumber);
+	public int deleteBoard(String boardNumber) {
+		return dao.deleteBoard(boardNumber);
 	}
 }

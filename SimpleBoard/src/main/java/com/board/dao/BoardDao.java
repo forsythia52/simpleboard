@@ -19,6 +19,13 @@ public interface BoardDao {
 
 	@Select("select * from board where boardnumber = #{boardnumber}")
 	BoardDto boardView(String boardNumber);
+	
+	@Select("select count(*) from board")
+	int boardCount();
+	
+	// 페이징
+	@Select("select * from board order by boardnumber desc limit #{start}, #{count}")
+	List<BoardDto> selectList(Map<String, Object> m);
 
 	@Insert("insert into board (boardtitle, boardviews, boardwritedate, boarddtail, userid) "
 			+ "values (#{boardtitle}, #{boardviews}, #{boardwritedate}, #{boarddtail}, #{userid})")
