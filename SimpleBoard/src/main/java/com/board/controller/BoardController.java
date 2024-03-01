@@ -3,7 +3,6 @@ package com.board.controller;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,33 +36,30 @@ public class BoardController {
 			@RequestParam(name = "page", defaultValue = "1") int page) {
 		LoginDto userInfo = user.getUsers();
 		m.addAttribute("userInfo", userInfo);
-		m.addAttribute("board", service.selectList(page));
 
 		// 페이징
-		int count = service.boardCount();
-		if (count > 0) {
+		int pageCount = 10; // 한 페이지에 보일 글 갯수
+		int boardCount = service.boardCount();
+		int startBoardNumber = (page - 1) * pageCount; // 글 시작 인덱스
+		m.addAttribute("start", startBoardNumber + 1);
 
-			int perPage = 10; // 한 페이지에 보일 글의 갯수
-			int startRow = (page - 1) * perPage;
+		int pageSelect = 5; // 선택 할 수 있는 페이지 수
+		int totalPages = boardCount / pageCount + (boardCount % pageCount > 0 ? 1 : 0); // 전체 페이지 수
 
-			List<BoardDto> boardList = service.selectList(startRow);
-			m.addAttribute("start", startRow + 1);
-			m.addAttribute("bList", boardList);
+		int startPageNumber = (page - 1) / pageSelect * pageSelect + 1; // 페이징 시작 번호
 
-			int pageNum = 5;
-			int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0); // 전체 페이지 수
+		int endPageNumber = startPageNumber + pageSelect - 1; // 페이징 끝 번호
 
-			int begin = (page - 1) / pageNum * pageNum + 1;
-			int end = begin + pageNum - 1;
-			if (end > totalPages) {
-				end = totalPages;
-			}
-			m.addAttribute("begin", begin);
-			m.addAttribute("end", end);
-			m.addAttribute("pageNum", pageNum);
-			m.addAttribute("totalPages", totalPages);
+		if (endPageNumber > totalPages) {
+			endPageNumber = totalPages;
 		}
-		m.addAttribute("count", count);
+		
+		m.addAttribute("pageSelect", pageSelect);
+		m.addAttribute("startPageNumber", startPageNumber);
+		m.addAttribute("endPageNumber", endPageNumber);
+		m.addAttribute("totalPages", totalPages);
+		
+		m.addAttribute("board", service.selectList(startBoardNumber, pageCount));
 		return "freeboard/freeboard";
 	}
 

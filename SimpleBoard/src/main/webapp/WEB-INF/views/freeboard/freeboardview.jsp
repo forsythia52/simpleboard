@@ -12,10 +12,10 @@
 	<hr>
 	작성자 : ${board.userid}
 	<br> 제목 : ${board.boardtitle}
+	<hr>
 	<br> 내용 : ${board.boarddtail}
 	<br>
 	<hr>
-	<br>
 	<p>
 	<div><form action="freeboardupdate" method="get">
 		<input type="submit" value="수정"> <input type="hidden"

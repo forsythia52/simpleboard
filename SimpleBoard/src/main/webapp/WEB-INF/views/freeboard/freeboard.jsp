@@ -42,21 +42,26 @@ th, td {
 		</c:forEach>
 	</table>
 	<!-- 페이징 -->
+	선택 할 수 있는 페이지 수 : ${pageSelect }
+	<br> 페이징 시작 번호 : ${startPageNumber }
+	<br> 페이징 끝 번호 : ${endPageNumber }
+	<br> 총 페이지 수 : ${totalPage }
+	<br>
+
 	<div class="paging">
 		<div id="page">
-			<c:if test="${begin > pageNum }">
-				<a href="freeboard?page=${begin-1 }" class="page prv">&lt;</a>
+			<c:if test="${startPageNumber > pageSelect }">
+				<a href="freeboard?page=${startPageNumber-1 }" class="page prv">이전</a>
 			</c:if>
-			<c:forEach begin="${begin }" end="${end}" var="i">
+			<c:forEach begin="${startPageNumber }" end="${endPageNumber}" var="i">
 				<a href="freeboard?page=${i}">${i}</a>
 			</c:forEach>
-			<c:if test="${end < totalPages }">
-				<a href="freeboard?page=${end+1}" class="page next">&gt;</a>
+			<c:if test="${endPageNumber < totalPages }">
+				<a href="freeboard?page=${endPageNumber+1}" class="page next">다음</a>
 			</c:if>
 		</div>
 	</div>
 	<br>
-
 	<p>
 		<a href="/boardwrite">글 작성</a>
 	</p>

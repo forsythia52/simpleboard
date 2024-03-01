@@ -29,10 +29,10 @@ public class BoardService {
 	}
 
 	// 페이징
-	public List<BoardDto> selectList(int start) {
+	public List<BoardDto> selectList(int page, int pageCount) {
 		Map<String, Object> m = new HashMap<>();
-		m.put("start", start);
-		m.put("count", 10);
+		m.put("start", page);
+		m.put("count", pageCount);
 		return dao.selectList(m);
 	}
 
