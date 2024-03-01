@@ -41,13 +41,16 @@ th, td {
 			</tr>
 		</c:forEach>
 	</table>
-	<!-- 페이징 -->
-	선택 할 수 있는 페이지 수 : ${pageSelect }
-	<br> 페이징 시작 번호 : ${startPageNumber }
-	<br> 페이징 끝 번호 : ${endPageNumber }
-	<br> 총 페이지 수 : ${totalPage }
-	<br>
+	<!-- 검색 -->
+	<form action="search">
+		<select name="order">
+			<option value="titleanddetail">제목 + 내용</option>
+			<option value="writer">작성자</option>
+		</select>
+		<input name="search"> <input type="submit" value="검색">
+	</form>
 
+	<!-- 페이징 -->
 	<div class="paging">
 		<div id="page">
 			<c:if test="${startPageNumber > pageSelect }">

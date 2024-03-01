@@ -28,6 +28,14 @@ public class BoardService {
 		return dao.boardCount();
 	}
 
+	public List<BoardDto> searchTitleAndDetail(Map<String, Object> search) {
+		return dao.searchTitleAndDetail(search);
+	}
+
+	public List<BoardDto> searchWriter(Map<String, Object> search) {
+		return dao.searchWriter(search);
+	}
+
 	// 페이징
 	public List<BoardDto> selectList(int page, int pageCount) {
 		Map<String, Object> m = new HashMap<>();

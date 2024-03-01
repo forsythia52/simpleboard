@@ -53,12 +53,12 @@ public class BoardController {
 		if (endPageNumber > totalPages) {
 			endPageNumber = totalPages;
 		}
-		
+
 		m.addAttribute("pageSelect", pageSelect);
 		m.addAttribute("startPageNumber", startPageNumber);
 		m.addAttribute("endPageNumber", endPageNumber);
 		m.addAttribute("totalPages", totalPages);
-		
+
 		m.addAttribute("board", service.selectList(startBoardNumber, pageCount));
 		return "freeboard/freeboard";
 	}
@@ -124,4 +124,23 @@ public class BoardController {
 		service.deleteBoard(boardnumber);
 		return "redirect:freeboard";
 	}
+
+	// 제목 + 내용 검색
+	@GetMapping("/search")
+	public String searchTitleAndDetail(@RequestParam(value = "search") String search,
+			@RequestParam(value = "order") String searchType, Model m) {
+		Map<String, Object> searching = new HashMap<>();
+		if (searchType.equals("titleanddetail")) {
+			System.out.println("titleanddetail");
+			searching.put("boardtitle", search);
+			searching.put("boarddtail", search);
+			m.addAttribute("result", service.searchTitleAndDetail(searching));
+		} else if (searchType.equals("writer")) {
+			searching.put("userid", search);
+			m.addAttribute("result", service.searchWriter(searching));
+		}
+
+		return "freeboard/freeboardsearch";
+	}
+
 }
