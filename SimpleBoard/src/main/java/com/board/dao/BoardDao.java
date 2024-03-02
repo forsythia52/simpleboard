@@ -50,6 +50,6 @@ public interface BoardDao {
 			+ "where boardnumber = #{boardnumber}")
 	int commentCount(String boardNumber);
 
-	@Delete("delete from board where boardnumber = #{boardnumber}")
-	int deleteBoard(String boardNumber);
+	@Delete("delete from board where boardnumber = #{boardnumber} and userid = #{userid}")
+	int deleteBoard(Map<String, Object> boardInfo);
 }

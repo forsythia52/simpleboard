@@ -120,8 +120,14 @@ public class BoardController {
 
 	// 게시글 삭제
 	@PostMapping("/freeboarddelete")
-	public String freeboardDelete(@RequestParam(value = "boardnumber") String boardnumber) {
-		service.deleteBoard(boardnumber);
+	public String freeboardDelete(@AuthenticationPrincipal SecurityUser user,
+			@RequestParam(value = "boardnumber") String boardnumber) {
+		LoginDto userinfo = user.getUsers();
+		String id = userinfo.getUserId();
+		Map<String, Object> boardInfo = new HashMap<>();
+		boardInfo.put("userid", id);
+		boardInfo.put("boardnumber", boardnumber);
+		service.deleteBoard(boardInfo);
 		return "redirect:freeboard";
 	}
 

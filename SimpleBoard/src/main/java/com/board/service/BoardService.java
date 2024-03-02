@@ -60,7 +60,7 @@ public class BoardService {
 		return dao.commentCount(boardNumber);
 	}
 
-	public int deleteBoard(String boardNumber) {
-		return dao.deleteBoard(boardNumber);
+	public int deleteBoard(Map<String, Object> boardInfo) {
+		return dao.deleteBoard(boardInfo);
 	}
 }
