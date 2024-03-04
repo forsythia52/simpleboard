@@ -4,14 +4,32 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 작성</title>
+<script
+	src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script>
+<script
+	src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
 <style type="text/css">
 table {
 	width: 500;
 	border: 1;
 }
+
+.ck.ck-editor {
+	max-width: 800px;
+}
+
+.ck-editor__editable {
+	height: 400px;
+}
+
+.ck-editor__editable {
+	height: 400px;
+}
+
+.ck-content {
+	font-size: 12px;
+}
 </style>
-<script type="text/javascript" src="../se2/js/service/HuskyEZCreator.js"
-	charset="utf-8"></script>
 </head>
 <body>
 	<form action="freeboardwrite" method="post">
@@ -24,20 +42,20 @@ table {
 				<td>제목</td>
 				<td><input name="boardtitle" size="100"></td>
 			</tr>
-			<tr>
 		</table>
-		<textarea name="ir1" id="ir1" rows="10" cols="100">Test</textarea>
+		<div id="editor"></div>
 		<input type="submit" value="작성">
 	</form>
 	<a href="freeboard">목록보기</a>
 </body>
 <script>
-	var oEditors = [];
-	nhn.husky.EZCreator.createInIFrame({
-		oAppRef : oEditors,
-		elPlaceHolder : "ir1",
-		sSkinURI : "../se2/SmartEditor2Skin.html",
-		fCreator : "createSEditor2"
-	});
+ClassicEditor
+  .create( document.querySelector( '#editor' ), {
+	  language: "ko",
+	  removePlugins: [ 'Heading' ]
+  })
+  .catch( error => {
+    console.error( error );
+  } );
 </script>
 </html>
