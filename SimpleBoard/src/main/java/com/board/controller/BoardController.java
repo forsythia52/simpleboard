@@ -74,12 +74,14 @@ public class BoardController {
 
 	// 게시글 작성
 	@PostMapping("/freeboardwrite")
-	public String write(@RequestParam(value = "userid") String userId, BoardDto dto, Model m) {
+	public String write(@RequestParam(value = "userid") String userId, @RequestParam(value = "ir1") String ir1,
+			Model m, BoardDto dto) {
 		LocalDateTime now = LocalDateTime.now();
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		dto.setUserid(userId);
 		dto.setBoardviews(0);
 		dto.setBoardwritedate(format.format(now));
+		dto.setBoarddtail(ir1);
 		service.writeBoard(dto);
 		return "redirect:freeboard";
 	}
