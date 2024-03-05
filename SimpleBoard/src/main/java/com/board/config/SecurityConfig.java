@@ -60,7 +60,7 @@ public class SecurityConfig {
 										  .invalidateHttpSession(true)
 										  .logoutSuccessUrl("/login"))
 				
-				.exceptionHandling((exception) -> exception.accessDeniedPage("/accessdenied"));
+				.exceptionHandling((exception) -> exception.accessDeniedPage("/"));
 				
 		http.userDetailsService(loginUserService);
 

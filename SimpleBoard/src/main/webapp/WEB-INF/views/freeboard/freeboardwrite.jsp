@@ -43,8 +43,11 @@ table {
 				<td><input name="boardtitle" size="100"></td>
 			</tr>
 		</table>
-		<div id="editor"></div>
+		<div>
+		<textarea name="content" id="editor"></textarea>
+		</div>
 		<input type="submit" value="작성">
+		
 	</form>
 	<a href="freeboard">목록보기</a>
 </body>
