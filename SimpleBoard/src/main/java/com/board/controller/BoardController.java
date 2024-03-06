@@ -1,9 +1,11 @@
 package com.board.controller;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -12,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.board.config.SecurityUser;
 import com.board.dto.BoardDto;
@@ -20,6 +24,8 @@ import com.board.service.BoardService;
 import com.board.service.CommentService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import net.minidev.json.JSONObject;
 
 @Controller
 public class BoardController {
@@ -84,6 +90,12 @@ public class BoardController {
 		dto.setBoarddtail(content);
 		service.writeBoard(dto);
 		return "redirect:freeboard";
+	}
+
+	// 이미지 업로드
+	@PostMapping(value = "/common/fms/ckeditor5Upload.do")
+	public void fileUpload() {
+
 	}
 
 	// 게시글 상세 페이지

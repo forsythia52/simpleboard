@@ -1,0 +1,28 @@
+table {
+	width: 500;
+	border: 1;
+}
+
+.ck.ck-editor {
+	max-width: 800px;
+}
+
+.ck-editor__editable {
+	height: 400px;
+}
+
+.ck-editor__editable {
+	height: 400px;
+}
+
+.ck-content {
+	font-size: 12px;
+}
+
+.ck-editor__editable p {
+	margin: 0
+}
+
+.contentsArea p {
+	margin: 0
+}
