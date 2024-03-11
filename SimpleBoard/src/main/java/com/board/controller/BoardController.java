@@ -95,7 +95,7 @@ public class BoardController {
 	// 이미지 업로드
 	@PostMapping(value = "/common/fms/ckeditor5Upload.do")
 	public void fileUpload() {
-
+		// test
 	}
 
 	// 게시글 상세 페이지

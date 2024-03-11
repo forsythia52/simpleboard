@@ -46,7 +46,7 @@ ClassicEditor
 	  removePlugins: [ 'Heading' ],
       simpleUpload:
       {
-          uploadUrl: "/imgupload",
+          uploadUrl: "/common/fms/ckeditor5Upload.do",
           withCredentials: true,
       },
 	  extraPlugins: [MyCustomUploadAdapterPlugin],
