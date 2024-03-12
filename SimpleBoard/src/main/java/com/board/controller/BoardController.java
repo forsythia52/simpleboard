@@ -92,11 +92,11 @@ public class BoardController {
 		return "redirect:freeboard";
 	}
 
-	// 이미지 업로드
-	@PostMapping(value = "/common/fms/ckeditor5Upload.do")
-	public void fileUpload() {
-		// test
-	}
+//	// 이미지 업로드
+//	@PostMapping(value = "/common/fms/ckeditor5Upload.do")
+//	public void fileUpload() {
+//		
+//	}
 
 	// 게시글 상세 페이지
 	@GetMapping("/freeboardview")
