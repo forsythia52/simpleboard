@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class BoardDto {
-	
+
 	private String boardnumber;
 	private String userid;
 	private String boardtitle;
@@ -12,4 +12,6 @@ public class BoardDto {
 	private String boardwritedate;
 	private String boarddtail;
 	private int commentcount;
+	private String filename;
+	private String filepath;
 }
