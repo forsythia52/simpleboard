@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,13 +80,30 @@ public class BoardController {
 	// 게시글 작성
 	@PostMapping("/freeboardwrite")
 	public String write(@RequestParam(value = "userid") String userId, Model m,
-			@RequestParam(value = "content") String content, BoardDto dto) {
+			@RequestParam(value = "content") String content, BoardDto dto, MultipartHttpServletRequest request) {
 		LocalDateTime now = LocalDateTime.now();
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		dto.setUserid(userId);
 		dto.setBoardviews(0);
 		dto.setBoardwritedate(format.format(now));
 		dto.setBoarddtail(content);
+//		System.out.println(request.getFile("file"));
+
+		// 파일 업로드
+		MultipartFile img = request.getFile("file");
+		UUID uuid = UUID.randomUUID(); // 랜덤으로 식별자를 생성
+		String path = request.getServletContext().getRealPath("/upload");
+		String fileName = uuid + "_" + img.getOriginalFilename(); // UUID와 파일이름을 포함된 파일 이름으로 저장
+		// 서버상의 application 경로 + /upload
+		try {
+			img.transferTo(new File(path + "/" + img.getOriginalFilename()));
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println(fileName);
+		System.out.println(path);
+		dto.setFilename(fileName);
+		dto.setFilepath(path);
 		service.writeBoard(dto);
 		return "redirect:freeboard";
 	}
@@ -115,22 +131,21 @@ public class BoardController {
 ////      BoardService.save(board); // board를 저장소에 save
 //	}
 
-	// 파일 업로드
-	@PostMapping("/fileupload")
-	public String fileUpload(MultipartHttpServletRequest request, Model m) {
-		MultipartFile img = request.getFile("file");
-		printInfo(img);
-		String path = request.getServletContext().getRealPath("/upload");
-
-		// 서버상의 application 경로 + /mainImg
-		try {
-			img.transferTo(new File(path + "/" + img.getOriginalFilename()));
-		} catch (IllegalStateException | IOException e) {
-			e.printStackTrace();
-		}
-		m.addAttribute("path", img.getOriginalFilename());
-		return "redirect:freeboard";
-	}
+//	@PostMapping("/fileupload")
+//	public String fileUpload(MultipartHttpServletRequest request, Model m) {
+//		MultipartFile img = request.getFile("file");
+//		printInfo(img);
+//		String path = request.getServletContext().getRealPath("/upload");
+//
+//		// 서버상의 application 경로 + /mainImg
+//		try {
+//			img.transferTo(new File(path + "/" + img.getOriginalFilename()));
+//		} catch (IllegalStateException | IOException e) {
+//			e.printStackTrace();
+//		}
+//		m.addAttribute("path", img.getOriginalFilename());
+//		return "redirect:freeboard";
+//	}
 
 	// 게시글 상세 페이지
 	@GetMapping("/freeboardview")
@@ -195,21 +210,6 @@ public class BoardController {
 		}
 
 		return "freeboard/freeboardsearch";
-	}
-
-	// etc
-	private String makeName(String oName) {
-		long currentTime = System.currentTimeMillis();
-		Random random = new Random();
-		int r = random.nextInt(50);// 0 ~ 49
-		int index = oName.lastIndexOf(".");
-		String ext = oName.substring(index + 1);
-
-		return currentTime + "_" + r + "." + ext;
-	}
-
-	private void printInfo(MultipartFile report) {
-		System.out.println("업로드 한 파일: " + report.getOriginalFilename());
 	}
 
 }

@@ -15,7 +15,7 @@
 <link href="../ckediter/setting.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<form action="freeboardwrite" method="post">
+	<form action="/freeboardwrite" method="post" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td>작성자:</td>
@@ -26,6 +26,10 @@
 				<td>제목</td>
 				<td><input name="boardtitle" size="100"></td>
 			</tr>
+			<tr>
+				<td>File to upload:</td>
+				<td><input type="file" name="file" /></td>
+			</tr>
 		</table>
 		<textarea name="content" id="editor"></textarea>
 		<p>
@@ -34,20 +38,6 @@
 	</form>
 	<a href="freeboard">목록보기</a>
 </body>
-<div>
-    <form method="POST" enctype="multipart/form-data" action="/fileupload">
-        <table>
-            <tr>
-                <td>File to upload:</td>
-                <td><input type="file" name="file" /></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="submit" value="Upload" /></td>
-            </tr>
-        </table>
-    </form>
-</div>
 <script>
 	// 에디터 구현
 	ClassicEditor.create(document.querySelector('#editor'), {

@@ -35,8 +35,8 @@ public interface BoardDao {
 	@Select("select * from board order by boardnumber desc limit #{start}, #{count}")
 	List<BoardDto> selectList(Map<String, Object> m);
 
-	@Insert("insert into board (boardtitle, boardviews, boardwritedate, boarddtail, userid) "
-			+ "values (#{boardtitle}, #{boardviews}, #{boardwritedate}, #{boarddtail}, #{userid})")
+	@Insert("insert into board (userid, boardtitle, boardwritedate, boarddtail, filename, filepath) "
+			+ "values (#{userid}, #{boardtitle}, #{boardwritedate}, #{boarddtail}, #{filename}, #{filepath})")
 	int writeBoard(BoardDto boardDto);
 
 	@Update("update board set boardtitle = #{boardtitle}, boarddtail = #{boarddtail} "

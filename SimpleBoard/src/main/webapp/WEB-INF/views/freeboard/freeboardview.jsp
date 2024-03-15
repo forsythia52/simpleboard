@@ -14,8 +14,11 @@
 	<br> 제목 : ${board.boardtitle}
 	<hr>
 	<br> 내용 : ${board.boarddtail}
-	<br>
 	<hr>
+	<br> 첨부 파일 : ${board.filename} 
+	<form method="post" action="/filedownload">
+		<input type="submit" value="다운로드">
+	</form>
 	<p>
 	<div><form action="freeboardupdate" method="get">
 		<input type="submit" value="수정"> <input type="hidden"
