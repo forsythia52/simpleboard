@@ -48,6 +48,10 @@ public class BoardService {
 		return dao.writeBoard(boardDto);
 	}
 
+	public BoardDto fileDownload(String boardNumber) {
+		return dao.fileDownload(boardNumber);
+	}
+
 	public int updateBoard(Map<String, Object> boardUpdate) {
 		return dao.updateBoard(boardUpdate);
 	}

@@ -16,8 +16,11 @@
 	<br> 내용 : ${board.boarddtail}
 	<hr>
 	<br> 첨부 파일 : ${board.filename} 
-	<form method="post" action="/filedownload">
+	<form action="/filedownload" method="post">
 		<input type="submit" value="다운로드">
+		<input type="hidden" name="boardnumber" value="${board.boardnumber}">
+		<input type="hidden" name="filename" value="${board.filename}" >
+		<input type="hidden" name="filepath" value="${board.filepath}" >
 	</form>
 	<p>
 	<div><form action="freeboardupdate" method="get">
@@ -65,6 +68,9 @@
 		// 게시판 번호 가져오기
 		const urlParams = new URL(location.href).searchParams;
 		const number = urlParams.get('number');
+		
+		// 파일 다운로드
+		document.getElementById("filedownload").value = number;
 		
 		// 게시글 수정
 		document.getElementById("freeboardupdateboardnumber").value = number;

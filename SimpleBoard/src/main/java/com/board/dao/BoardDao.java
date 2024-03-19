@@ -39,6 +39,10 @@ public interface BoardDao {
 			+ "values (#{userid}, #{boardtitle}, #{boardwritedate}, #{boarddtail}, #{filename}, #{filepath})")
 	int writeBoard(BoardDto boardDto);
 
+	// 파일 다운로드
+	@Select("select filename, filepath from board where boardnumber = #{boardnumber}")
+	BoardDto fileDownload(String boardNumber);
+
 	@Update("update board set boardtitle = #{boardtitle}, boarddtail = #{boarddtail} "
 			+ "where boardnumber = #{boardnumber} and userid = #{userid}")
 	int updateBoard(Map<String, Object> boardUpdate);

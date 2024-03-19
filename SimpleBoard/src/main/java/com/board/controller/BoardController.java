@@ -1,7 +1,9 @@
 package com.board.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +28,7 @@ import com.board.service.BoardService;
 import com.board.service.CommentService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
 public class BoardController {
@@ -108,6 +112,36 @@ public class BoardController {
 		return "redirect:freeboard";
 	}
 
+	// 파일 다운로드
+	@PostMapping("/filedownload")
+	public void fileDownload(HttpServletResponse response, @RequestParam(value = "filename") String fileName,
+			@RequestParam(value = "filepath") String filePath) throws IOException {
+		int index = fileName.indexOf("_");
+		String orignalFileName = fileName.substring(index + 1);
+		File file = new File(filePath + "\\" + orignalFileName);
+		String getFileName = new String(file.getName().getBytes("utf-8"), "iso-8859-1");
+		System.out.println("filename: " + getFileName);
+		response.setContentType("application/octet-stream; charset=utf-8");
+		response.setHeader("Content-Disposition", "attachment; filename=\"" + getFileName + "\";");// 다운로드 받을 파일명 지정
+
+		response.setHeader("Content-Transfer-Encoding", "binary");
+
+		OutputStream out = response.getOutputStream();
+
+		FileInputStream fis = null;
+		try {
+			fis = new FileInputStream(file);
+			FileCopyUtils.copy(fis, out);
+		} finally {
+			if (fis != null)
+				try {
+					fis.close();
+				} catch (IOException ex) {
+				}
+		}
+		out.flush();
+	}
+
 //	// 이미지 업로드
 //	@PostMapping("/imgupload")
 //	public void fileUpload(BoardDto board, MultipartFile file) throws IllegalStateException, IOException {
@@ -129,22 +163,6 @@ public class BoardController {
 //		// 파일 업로드 처리 끝
 //
 ////      BoardService.save(board); // board를 저장소에 save
-//	}
-
-//	@PostMapping("/fileupload")
-//	public String fileUpload(MultipartHttpServletRequest request, Model m) {
-//		MultipartFile img = request.getFile("file");
-//		printInfo(img);
-//		String path = request.getServletContext().getRealPath("/upload");
-//
-//		// 서버상의 application 경로 + /mainImg
-//		try {
-//			img.transferTo(new File(path + "/" + img.getOriginalFilename()));
-//		} catch (IllegalStateException | IOException e) {
-//			e.printStackTrace();
-//		}
-//		m.addAttribute("path", img.getOriginalFilename());
-//		return "redirect:freeboard";
 //	}
 
 	// 게시글 상세 페이지
