@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+.board {
+	margin-top: 50px;
+	margin-left: 250px;
+}
+
+table {
+	width: 100%;
+	border: 1px solid #000000;
+}
+
+th, td {
+	border: 1px solid #000000;
+	padding-left: 10px;
+	padding-right: 10px;
+	text-align: center;
+}
+
+/* SideBar */
+.d-flex flex-column flex-shrink-0 p-3 bg-light {
+	background-color: #f1f1f1;
+	position: fixed;
+	width: 200px;
+	height: 100%;
+	margin-left: -20px;
+	margin-top: 50px
+}
+
+/* Header */
+.header {
+	float: top;
+}
