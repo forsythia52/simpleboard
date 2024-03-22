@@ -13,20 +13,20 @@
 		<a href="/"
 			class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
 			<svg class="bi pe-none me-2" width="40" height="32">
-				<use xlink:href="#bootstrap"></use></svg> <span class="fs-4">Sidebar</span>
+				<use xlink:href="#bootstrap"></use></svg> <span class="fs-4"></span>
 		</a>
 		<hr>
 		<ul class="nav nav-pills flex-column mb-auto">
-			<li class="nav-item"><a href="#" class="nav-link active"
+			<li class="nav-item"><a href="login" class="nav-link active"
 				aria-current="page"> <svg class="bi pe-none me-2" width="16"
 						height="16">
-						<use xlink:href="#home"></use></svg> Home
+						<use xlink:href="#home"></use></svg> 로그인
 			</a></li>
 			<li><a href="#" class="nav-link link-dark"> <svg
 						class="bi pe-none me-2" width="16" height="16">
-						<use xlink:href="#speedometer2"></use></svg> Dashboard
+						<use xlink:href="#speedometer2"></use></svg> 메인화면
 			</a></li>
-			<li><a href="#" class="nav-link link-dark"> <svg
+			<!-- 			<li><a href="#" class="nav-link link-dark"> <svg
 						class="bi pe-none me-2" width="16" height="16">
 						<use xlink:href="#table"></use></svg> Orders
 			</a></li>
@@ -37,7 +37,7 @@
 			<li><a href="#" class="nav-link link-dark"> <svg
 						class="bi pe-none me-2" width="16" height="16">
 						<use xlink:href="#people-circle"></use></svg> Customers
-			</a></li>
+			</a></li> -->
 		</ul>
 		<hr>
 		<div class="dropdown">
