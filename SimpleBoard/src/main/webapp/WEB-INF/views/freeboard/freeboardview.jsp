@@ -58,19 +58,17 @@
 	<!-- 댓글 작성 -->
 	<form action="/comment/write" method="post">
 		댓글 :
-		<textarea rows="10" cols="20" name="commentcontent"></textarea>
-		<input type="submit" value="작성"> <input type="hidden"
-			name="boardnumber" id="commemtboardnumber">
+		<textarea rows="1" cols="20" name="commentcontent"></textarea>
+		<input type="submit" value="작성"> <input
+			name="boardnumber" id="commemtboardnumber" readonly="readonly">
 	</form>
 
 	<hr>
 	<script>
 		// 게시판 번호 가져오기
-		const urlParams = new URL(location.href).searchParams;
-		const number = urlParams.get('number');
-		
-		// 파일 다운로드
-		document.getElementById("filedownload").value = number;
+		let query = window.location.search;
+		let param = new URLSearchParams(query);
+		let number = param.get('number');
 		
 		// 게시글 수정
 		document.getElementById("freeboardupdateboardnumber").value = number;
@@ -80,6 +78,7 @@
 		
 		// 댓글 작성
 		document.getElementById("commemtboardnumber").value = number;
+		
 	</script>
 </body>
 </html>

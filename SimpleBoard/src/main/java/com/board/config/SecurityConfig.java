@@ -41,7 +41,7 @@ public class SecurityConfig {
 							.requestMatchers(new AntPathRequestMatcher("/fonts/**")).permitAll()
 							.requestMatchers(new AntPathRequestMatcher("/images/**")).permitAll()
 							.requestMatchers(new AntPathRequestMatcher("/admin/**")).hasRole("ADMIN")
-							.requestMatchers(new AntPathRequestMatcher("/main/**")).authenticated()
+//							.requestMatchers(new AntPathRequestMatcher("/main/**")).authenticated()
 							.anyRequest().permitAll();
 
 					} catch (Exception e) {
@@ -50,7 +50,7 @@ public class SecurityConfig {
 				}
 
 				).formLogin((formLogin) -> formLogin.loginPage("/login")
-													.defaultSuccessUrl("/main", true)
+													.defaultSuccessUrl("/", true)
 													.usernameParameter("id")
 													.passwordParameter("pw")
 													.failureHandler(failhandler())
@@ -58,7 +58,7 @@ public class SecurityConfig {
 				
 				.logout((logout) -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 										  .invalidateHttpSession(true)
-										  .logoutSuccessUrl("/login"))
+										  .logoutSuccessUrl("/"))
 				
 				.exceptionHandling((exception) -> exception.accessDeniedPage("/"));
 				

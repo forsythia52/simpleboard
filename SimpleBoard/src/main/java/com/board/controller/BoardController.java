@@ -41,10 +41,10 @@ public class BoardController {
 
 	// 자유 게시판 페이지
 	@GetMapping("/freeboard")
-	public String freeBoard(@AuthenticationPrincipal SecurityUser user, Model m,
+	public String freeBoard(Model m,
 			@RequestParam(name = "page", defaultValue = "1") int page) {
-		LoginDto userInfo = user.getUsers();
-		m.addAttribute("userInfo", userInfo);
+//		LoginDto userInfo = user.getUsers();
+//		m.addAttribute("userInfo", userInfo);
 
 		// 페이징
 		int pageCount = 10; // 한 페이지에 보일 글 갯수
@@ -174,6 +174,7 @@ public class BoardController {
 		m.addAttribute("comment", commentService.commentList(boardnumber));
 		// 게시글 조회수 +1
 		service.boardCountUp(boardnumber);
+		System.out.println(boardnumber);
 		return "freeboard/freeboardview";
 	}
 

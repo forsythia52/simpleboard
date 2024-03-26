@@ -35,12 +35,11 @@ public class CommentController {
 		dto.setCommentuserid(userId);
 		dto.setCommentdate(now);
 		dto.setCommentcontent(commentcontent);
-		service.commentWrite(dto);
-		boardService.commentCount(boardNumber);
+//		service.commentWrite(dto);
+		System.out.println(dto);
+//		boardService.commentCount(boardNumber);
 		return "redirect:/freeboard";
 	}
-
-	// 댓글 수정
 
 	// 댓글 삭제
 	@PostMapping("/comment/delete")

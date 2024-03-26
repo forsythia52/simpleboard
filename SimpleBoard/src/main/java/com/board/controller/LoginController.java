@@ -28,11 +28,6 @@ public class LoginController {
 	public String Login() {
 		return "login/login";
 	}
-	
-	@GetMapping("/")
-	public String Login2() {
-		return "login/login";
-	}
 
 	@GetMapping("/register")
 	public String Regisetr() {
