@@ -50,34 +50,30 @@
 			<select name="order">
 				<option value="titleanddetail">제목 + 내용</option>
 				<option value="writer">작성자</option>
-			</select> <input name="search"> <input type="submit" value="검색">
+			</select> <input class="form-control rounded" name="search" aria-label="Search" aria-describedby="search-addon">
+			<input type="submit" value="검색" class="btn btn-outline-primary">
 		</form>
 
 		<!-- 페이징 -->
-		<div class="paging">
-			<div id="page">
-				<c:if test="${startPageNumber > pageSelect }">
-					<a href="freeboard?page=${startPageNumber-1 }" class="page prv">이전</a>
-				</c:if>
+		<nav aria-label="Page navigation example" style="margin-top: 30px;">
+			<ul class="pagination justify-content-center">
+				<li class="page-item"><c:if
+						test="${startPageNumber > pageSelect }">
+						<a href="freeboard?page=${startPageNumber-1 }" class="page-link">이전</a>
+					</c:if></li>
 				<c:forEach begin="${startPageNumber }" end="${endPageNumber}"
 					var="i">
-					<a href="freeboard?page=${i}">${i}</a>
+					<li class="page-item"><a
+						href="freeboard?page=${i}" class="page-link">${i}</a></li>
 				</c:forEach>
 				<c:if test="${endPageNumber < totalPages }">
-					<a href="freeboard?page=${endPageNumber+1}" class="page next">다음</a>
+					<a href="freeboard?page=${endPageNumber+1}" class="page-link">다음</a>
 				</c:if>
-			</div>
-		</div>
-		<br>
-		<p>
-			<a href="/boardwrite">글 작성</a>
-		</p>
-		<p>
-			<a href="/logout">로그아웃</a>
-		</p>
+			</ul>
+		</nav>
 	</div>
-
+	<a href="/boardwrite">글 작성</a>
 	<!-- footer -->
-	<%@include file="../bootstrap/footer.jsp"%> 
+	<%@include file="../bootstrap/footer.jsp"%>
 </body>
 </html>

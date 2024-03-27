@@ -18,16 +18,24 @@ th, td {
 }
 
 /* SideBar */
-.d-flex flex-column flex-shrink-0 p-3 bg-light {
-	background-color: #f1f1f1;
-	position: fixed;
+#sidebar {
+	background-color: rgb(255, 255, 255);
+	/* position: fixed; */
 	width: 200px;
 	height: 100%;
-	margin-left: -20px;
-	margin-top: 50px
+	/* 	margin-left: -20px;
+	margin-top: 50px; */
+	margin-right: 20px;
+	float: left;
+	border: 1px solid black;
 }
 
 /* Header */
 .header {
 	float: top;
+}
+
+/* Footer */
+.footer {
+	margin-top: 40%;
 }

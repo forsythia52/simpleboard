@@ -41,8 +41,7 @@ public class BoardController {
 
 	// 자유 게시판 페이지
 	@GetMapping("/freeboard")
-	public String freeBoard(Model m,
-			@RequestParam(name = "page", defaultValue = "1") int page) {
+	public String freeBoard(Model m, @RequestParam(name = "page", defaultValue = "1") int page) {
 //		LoginDto userInfo = user.getUsers();
 //		m.addAttribute("userInfo", userInfo);
 

@@ -35,9 +35,8 @@ public class CommentController {
 		dto.setCommentuserid(userId);
 		dto.setCommentdate(now);
 		dto.setCommentcontent(commentcontent);
-//		service.commentWrite(dto);
-		System.out.println(dto);
-//		boardService.commentCount(boardNumber);
+		service.commentWrite(dto);
+		boardService.commentCount(boardNumber);
 		return "redirect:/freeboard";
 	}
 
