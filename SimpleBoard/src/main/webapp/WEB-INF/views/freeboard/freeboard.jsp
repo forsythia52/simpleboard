@@ -75,10 +75,10 @@
 	</div>
 	<c:choose>
 		<c:when test="${id == null}">
-			<a href="/login">글 작성</a>
+			<button type="button" onclick="location.href='/login " class="btn btn-outline-primary">작성</button>
 		</c:when>
 		<c:when test="${id != null}">
-			<a href="/boardwrite">글 작성</a>
+			<button type="button" onclick="location.href='/boardwrite " class="btn btn-outline-primary">작성</button>
 		</c:when>
 	</c:choose>
 	<!-- footer -->

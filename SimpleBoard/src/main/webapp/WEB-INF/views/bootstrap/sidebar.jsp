@@ -19,10 +19,20 @@
 								<img src="" alt="" width="32" height="32"
 									class="rounded-circle me-2">${id}</c:when>
 						</c:choose> </strong>
-				</div> <a href="login" class="nav-link active" aria-current="page"> <svg
-						class="bi pe-none me-2" width="16" height="16">
+				</div> <c:choose>
+					<c:when test="${id == null}">
+						<a href="login" class="nav-link active" aria-current="page"> <svg
+								class="bi pe-none me-2" width="16" height="16">
 						<use xlink:href="#home"></use></svg> 로그인
-			</a>
+						</a>
+					</c:when>
+					<c:when test="${id != null}">
+						<a href="logout" class="nav-link active" aria-current="page">
+							<svg class="bi pe-none me-2" width="16" height="16">
+						<use xlink:href="#home"></use></svg> 로그아웃
+						</a>
+					</c:when>
+				</c:choose>
 			</li>
 			<li><a href="/" class="nav-link link-dark"> <svg
 						class="bi pe-none me-2" width="16" height="16">
