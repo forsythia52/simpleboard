@@ -14,10 +14,10 @@
 			<li class="nav-item">
 				<div style="margin: 30px">
 					<strong><c:choose>
-							<c:when test="${usernickname != null}">
+							<c:when test="${id == null}">로그인하세요</c:when>
+							<c:when test="${id != null}">
 								<img src="" alt="" width="32" height="32"
-									class="rounded-circle me-2">${usernickname}</c:when>
-							<c:when test="${usernickname == null}">로그인하세요</c:when>
+									class="rounded-circle me-2">${id}</c:when>
 						</c:choose> </strong>
 				</div> <a href="login" class="nav-link active" aria-current="page"> <svg
 						class="bi pe-none me-2" width="16" height="16">
