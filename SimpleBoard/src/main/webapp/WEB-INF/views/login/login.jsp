@@ -9,7 +9,8 @@
 <h3>로그인</h3>
 <form action="/login" method="post">
 아이디 : <input name="id" ><br>
-비밀번호 : <input type="password" name="pw">
+비밀번호 : <input type="password" name="pw"><br>
+로그인 기억<input type="checkbox" id="remember-me" name="remember-me" />
 <input type="submit" value="전송">
 </form>
 <a href="/register">회원가입</a>

@@ -12,20 +12,20 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 public class SecurityConfig {
-	
+
 	@Autowired
 	private LoginUserService loginUserService;
-	
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-	
+
+	@Bean
+	public BCryptPasswordEncoder bCryptPasswordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
 	@Bean
 	public FailureHandler failhandler() {
 		return new FailureHandler();
 	}
-    
+
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -63,8 +63,11 @@ public class SecurityConfig {
 				.exceptionHandling((exception) -> exception.accessDeniedPage("/"));
 				
 		http.userDetailsService(loginUserService);
-
+				
+		http.rememberMe((remember) -> remember.rememberMeParameter("remember-me")
+											  .tokenValiditySeconds(3600));
+		
 		return http.build();
 	}
-	
+
 }
