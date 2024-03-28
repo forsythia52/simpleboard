@@ -12,6 +12,8 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -68,6 +70,16 @@ public class BoardController {
 		m.addAttribute("totalPages", totalPages);
 
 		m.addAttribute("board", service.selectList(startBoardNumber, pageCount));
+		
+		// id 추출
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		if (principal instanceof UserDetails) {
+			String username = ((UserDetails) principal).getUsername();
+			System.out.println("UserDetails: " + username);
+			m.addAttribute("id", username);
+		} 
+		
 		return "freeboard/freeboard";
 	}
 

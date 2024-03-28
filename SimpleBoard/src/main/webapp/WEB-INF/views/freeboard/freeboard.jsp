@@ -50,8 +50,9 @@
 			<select name="order">
 				<option value="titleanddetail">제목 + 내용</option>
 				<option value="writer">작성자</option>
-			</select> <input class="form-control rounded" name="search" aria-label="Search" aria-describedby="search-addon">
-			<input type="submit" value="검색" class="btn btn-outline-primary">
+			</select> <input class="form-control rounded" name="search"
+				aria-label="Search" aria-describedby="search-addon"> <input
+				type="submit" value="검색" class="btn btn-outline-primary">
 		</form>
 
 		<!-- 페이징 -->
@@ -63,8 +64,8 @@
 					</c:if></li>
 				<c:forEach begin="${startPageNumber }" end="${endPageNumber}"
 					var="i">
-					<li class="page-item"><a
-						href="freeboard?page=${i}" class="page-link">${i}</a></li>
+					<li class="page-item"><a href="freeboard?page=${i}"
+						class="page-link">${i}</a></li>
 				</c:forEach>
 				<c:if test="${endPageNumber < totalPages }">
 					<a href="freeboard?page=${endPageNumber+1}" class="page-link">다음</a>
@@ -72,7 +73,14 @@
 			</ul>
 		</nav>
 	</div>
-	<a href="/boardwrite">글 작성</a>
+	<c:choose>
+		<c:when test="${id == null}">
+			<a href="/login">글 작성</a>
+		</c:when>
+		<c:when test="${id != null}">
+			<a href="/boardwrite">글 작성</a>
+		</c:when>
+	</c:choose>
 	<!-- footer -->
 	<%@include file="../bootstrap/footer.jsp"%>
 </body>
